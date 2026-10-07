@@ -1,0 +1,41 @@
+name: Build Windows release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npx playwright install chromium
+      - run: npm run test:ui
+      - run: npm run package:win
+      - name: Generate download checksum
+        shell: pwsh
+        run: |
+          $download = Get-Item 'dist/Dropzone-Optimizer-1.0.0-Windows-x64.zip'
+          $checksum = (Get-FileHash $download.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+          "$checksum  $($download.Name)" | Set-Content 'dist/SHA256SUMS.txt' -Encoding utf8
+      - name: Publish tested Windows build
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release create "$env:RELEASE_TAG" 'dist/Dropzone-Optimizer-1.0.0-Windows-x64.zip' 'dist/SHA256SUMS.txt' --verify-tag --title 'Dropzone Optimizer 1.0.0' --notes-file RELEASE-NOTES.md
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

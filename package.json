@@ -1,0 +1,32 @@
+{
+  "name": "dropzone-optimizer",
+  "version": "1.0.0",
+  "description": "Reversible Fortnite and Windows performance settings for your PC",
+  "private": true,
+  "type": "module",
+  "main": "src/main.cjs",
+  "author": "Dropzone",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "preview": "node scripts/preview.mjs",
+    "test": "node --test test/*.test.mjs",
+    "test:ui": "playwright test",
+    "package:win": "electron-builder --win zip --x64"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "electron": "44.7.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "app.dropzone.optimizer",
+    "productName": "Dropzone Optimizer",
+    "asar": true,
+    "files": ["src/**/*", "ui/**/*", "package.json"],
+    "extraFiles": ["START-HERE.txt", "README.md", { "from": "LICENSE", "to": "DROPZONE-LICENSE.txt" }],
+    "directories": { "output": "dist" },
+    "win": { "target": "zip", "signAndEditExecutable": false },
+    "artifactName": "Dropzone-Optimizer-${version}-Windows-x64.${ext}"
+  }
+}

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Dropzone — Fortnite Optimizer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h7m4 0h5M4 17h3m4 0h9"/><circle cx="13" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="m14 2-10 12h7l-1 8 10-12h-7z"/></symbol>
+    <symbol id="i-restore" viewBox="0 0 24 24"><path d="M3 10a9 9 0 1 1 2 8M3 4v6h6m3-3v6l4 2"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/><rect x="9" y="9" width="6" height="6" rx="1"/></symbol>
+    <symbol id="i-gpu" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="15" cy="12" r="3"/><path d="M6 10h3m-3 4h3m-2 4v3m4-3v3"/></symbol>
+    <symbol id="i-ram" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 10v4m4-4v4m4-4v4m4-4v4M6 17v3m4-3v3m4-3v3m4-3v3"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 9 4v6c0 5-9 10-9 10S3 17 3 12V6z"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-scan" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M3 12h18"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7V4h6l3 3h9v13H3z"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/></symbol>
+  </defs></svg>
+
+  <header class="titlebar"><div><span class="titlebar-dot"></span> DROPZONE <span class="titlebar-divider">/</span> FORTNITE OPTIMIZER</div><div class="window-controls"><span>v1.0.0</span><button id="minimize" aria-label="Minimize window">−</button><button id="close" aria-label="Close window">×</button></div></header>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a href="#overview" class="brand" aria-label="Dropzone overview"><span class="brand-mark">D<span></span></span><span>dropzone<span class="brand-caption">LESS FRICTION. MORE FRAMES.</span></span></a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav aria-label="Main navigation">
+        <button class="nav-item active" data-page="overview" aria-current="page"><svg><use href="#i-grid"/></svg>Overview<span class="nav-active-dot"></span></button>
+        <button class="nav-item" data-page="settings"><svg><use href="#i-sliders"/></svg>Game settings</button>
+        <button class="nav-item" data-page="latency"><svg><use href="#i-zap"/></svg>Input latency<span class="nav-tag">280 Hz</span></button>
+        <button class="nav-item" data-page="recovery"><svg><use href="#i-restore"/></svg>Backup & restore</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="safety-card"><div class="safety-icon"><svg><use href="#i-shield"/></svg></div><strong>Your settings. Your control.</strong><p>Every applied change has a saved original. Restore when you need to.</p><button class="text-button" data-go="recovery">View recovery <svg><use href="#i-arrow"/></svg></button></div>
+        <div class="local-status"><span class="status-dot"></span>Runs locally on your PC</div>
+        <div class="disclaimer">Independent project.<br>Not affiliated with Epic Games.</div>
+      </div>
+    </aside>
+
+    <main>
+      <div class="page-heading"><div class="breadcrumb">WORKSPACE <span>/</span> <span id="breadcrumb-page">OVERVIEW</span></div><span class="connection-badge" id="connection-badge"><span class="status-dot"></span>Checking environment</span></div>
+      <div id="notice" class="notice" role="status" hidden></div>
+
+      <section class="page active" id="page-overview" aria-label="Overview">
+        <div class="hero">
+          <div class="hero-copy"><div class="eyebrow"><span></span> READY FOR YOUR NEXT DROP</div><h1>More frames.<br><span>Less in your way.</span></h1><p>A focused setup for your Fortnite sessions.<br>Fine-tuned for your hardware. Always reversible.</p><div class="hero-tags"><span><svg><use href="#i-monitor"/></svg>1080p / 280 Hz</span><span><svg><use href="#i-zap"/></svg>Latency focused</span></div></div>
+          <div class="hero-visual" aria-label="Your monitor target is 280 frames per second; this is not a measurement"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="crosshair horizontal"></div><div class="crosshair vertical"></div><div class="target-readout"><span class="readout-label">YOUR DISPLAY TARGET</span><div>280<span>FPS</span></div><span class="readout-bottom"><span></span>3.57 ms frame budget</span></div><span class="visual-corner corner-tl"></span><span class="visual-corner corner-br"></span><span class="visual-footnote">TARGET, NOT A BENCHMARK</span></div>
+        </div>
+
+        <div class="section-heading"><h2>Your battlestation <span id="hardware-source">FROM YOUR SPECS</span></h2><button class="text-button" id="scan"><svg><use href="#i-scan"/></svg>Scan PC</button></div>
+        <div class="hardware-grid">
+          <article class="hardware-card"><svg><use href="#i-cpu"/></svg><span>PROCESSOR</span><strong id="cpu-value">Intel Core i5-10600K</strong><small id="cpu-detail">6 cores · 12 threads · 4.10 GHz base</small></article>
+          <article class="hardware-card"><svg><use href="#i-gpu"/></svg><span>GRAPHICS</span><strong id="gpu-value">AMD Radeon RX 6600</strong><small id="gpu-detail">8 GB VRAM</small></article>
+          <article class="hardware-card"><svg><use href="#i-ram"/></svg><span>MEMORY</span><strong id="ram-value">16 GB RAM</strong><small id="ram-detail">150 GB storage free · from screenshot</small></article>
+        </div>
+
+        <div class="section-heading preset-heading"><h2>Pick your playstyle</h2><span>One preset. A cleaner starting point.</span></div>
+        <div class="presets" role="group" aria-label="Performance preset">
+          <button class="preset" data-preset="balanced" aria-pressed="false"><div class="preset-top"><svg><use href="#i-sliders"/></svg><span class="radio-mark"></span></div><h3>Balanced</h3><p>Keep the detail.<br>Trim the distractions.</p><div class="preset-bottom">100% scale <span>Medium textures</span></div></button>
+          <button class="preset selected" data-preset="competitive" aria-pressed="true"><span class="recommended">RECOMMENDED FOR YOU</span><div class="preset-top"><svg><use href="#i-target"/></svg><span class="radio-mark"></span></div><h3>Competitive</h3><p>Clear visuals. Low settings.<br>Built for the next fight.</p><div class="preset-bottom">100% scale <span>Low textures</span></div></button>
+          <button class="preset" data-preset="potato" aria-pressed="false"><div class="preset-top"><svg><use href="#i-zap"/></svg><span class="radio-mark"></span></div><h3>Maximum FPS</h3><p>Trade image quality<br>for more headroom.</p><div class="preset-bottom">70% scale <span>Lowest detail</span></div></button>
+        </div>
+        <div class="overview-note"><svg><use href="#i-info"/></svg><p>Start with Competitive at 1080p. Compare the same replay before and after; 280 FPS is a target, not a promise.</p><button class="text-button" data-go="settings">Fine-tune<svg><use href="#i-arrow"/></svg></button></div>
+      </section>
+
+      <section class="page" id="page-settings" aria-label="Game settings" hidden>
+        <div class="page-intro"><div class="eyebrow">MAKE IT YOURS</div><h1>Every frame counts.</h1><p>Your preset handles the detail. You control the trade-offs.</p></div>
+        <div class="settings-layout"><div>
+          <article class="panel"><div class="panel-title"><svg><use href="#i-sliders"/></svg><h2>Fortnite video settings</h2><label class="switch"><input id="fortnite-toggle" type="checkbox" checked aria-label="Apply Fortnite video settings"><span></span></label></div>
+            <div class="setting-row"><div><label for="fps-cap">Frame rate limit</label><p>280 Hz display · choose a cap you can sustain.</p></div><select id="fps-cap"><option value="0">Unlimited</option><option value="120">120 FPS</option><option value="144">144 FPS</option><option value="165">165 FPS</option><option value="180">180 FPS</option><option value="200">200 FPS</option><option value="240">240 FPS</option><option value="277">277 FPS · FreeSync</option><option value="280" selected>280 FPS · display target</option><option value="360">360 FPS</option></select></div>
+            <div class="range-setting"><div><label for="resolution-scale">3D resolution scale</label><output for="resolution-scale" id="scale-value">100%</output></div><input id="resolution-scale" type="range" min="50" max="100" step="1" value="100"><div class="range-labels"><span>More performance</span><span>Sharper image</span></div><p id="render-resolution">1920 × 1080 internal rendering at your 1080p output.</p></div>
+            <div class="setting-summary"><div><span>Selected preset</span><strong id="selected-preset-label">Competitive</strong></div><div><span>V-Sync / motion blur</span><strong>Off / Off</strong></div><div><span>Shadows / reflections</span><strong>Low / Low</strong></div><div><span>Dynamic resolution</span><strong>Off</strong></div></div>
+          </article>
+          <article class="panel windows-panel"><div class="panel-title"><svg><use href="#i-grid"/></svg><h2>Windows session</h2><span class="small-badge">OPTIONAL</span></div>
+            <div class="toggle-row"><div><label for="game-mode-toggle">Enable Windows Game Mode</label><p>Let Windows prioritize your gaming session.</p></div><label class="switch"><input id="game-mode-toggle" type="checkbox" checked><span></span></label></div>
+            <div class="toggle-row"><div><label for="capture-toggle">Disable Windows game capture</label><p>Turns off Game DVR recording. Your clips will not be captured.</p></div><label class="switch"><input id="capture-toggle" type="checkbox" checked><span></span></label></div>
+            <div class="toggle-row"><div><label for="power-toggle">High performance power plan</label><p>Optional for your desktop. May increase power use and heat.</p></div><label class="switch"><input id="power-toggle" type="checkbox"><span></span></label></div>
+          </article>
+        </div><aside class="settings-aside"><div class="mini-icon"><svg><use href="#i-info"/></svg></div><h3>Start clear. Then go faster.</h3><p>Your RX 6600 is a good starting point for 1080p low settings. Keep 100% resolution first; lower it only if your GPU is the limit.</p><div class="aside-divider"></div><h4>Before applying</h4><p>Close Fortnite. Your config needs to exist, so launch the game at least once first.</p><h4>Rendering mode</h4><p>Select Performance in Fortnite’s Video settings, then restart the game. If it stutters, compare DirectX 12 after shaders have warmed up.</p><button class="text-button" data-go="latency">Tune input latency<svg><use href="#i-arrow"/></svg></button></aside></div>
+      </section>
+
+      <section class="page" id="page-latency" aria-label="Input latency" hidden>
+        <div class="page-intro"><div class="eyebrow">FEEL THE DIFFERENCE</div><h1>Less wait. More control.</h1><p>Low input delay starts with a steady frame time and the right display settings.</p></div>
+        <div class="latency-banner"><svg><use href="#i-zap"/></svg><div><strong>A 280 Hz refresh takes 3.57 ms.</strong><p>That is one refresh interval, not your total input delay. This app does not measure end-to-end latency.</p></div><span>1080p / 280 Hz</span></div>
+        <div class="section-heading"><h2>Your low-latency checklist</h2><span>Manual steps · check off as you go</span></div>
+        <div class="checklist">
+          <label class="checklist-item"><input type="checkbox" data-check="refresh"><span class="checklist-number">01</span><span><strong>Set your monitor to 280 Hz</strong><span>Windows → System → Display → Advanced display. Select 1920 × 1080 and 280 Hz if your monitor exposes that mode.</span></span><span class="checklist-box"><svg><use href="#i-check"/></svg></span></label>
+          <label class="checklist-item"><input type="checkbox" data-check="render"><span class="checklist-number">02</span><span><strong>Try Fortnite’s Performance rendering mode</strong><span>Video → Rendering Mode → Performance, then restart. Compare with DX12 over several matches; shader compilation can cause temporary stutter.</span></span><span class="checklist-box"><svg><use href="#i-check"/></svg></span></label>
+          <label class="checklist-item"><input type="checkbox" data-check="sync"><span class="checklist-number">03</span><span><strong>Keep V-Sync off and choose a stable cap</strong><span>The presets disable in-game V-Sync. Start at 280 FPS; lower the cap if it fluctuates heavily. For FreeSync, enable it in your monitor and AMD software, then try 277 FPS.</span></span><span class="checklist-box"><svg><use href="#i-check"/></svg></span></label>
+          <label class="checklist-item"><input type="checkbox" data-check="amd"><span class="checklist-number">04</span><span><strong>Test standard Radeon Anti-Lag in AMD Software</strong><span>Use the Fortnite game profile if Anti-Lag is available for your driver and rendering mode. Compare on versus off; improvement depends on GPU load. Keep Radeon Chill off for this test.</span></span><span class="checklist-box"><svg><use href="#i-check"/></svg></span></label>
+          <label class="checklist-item"><input type="checkbox" data-check="mouse"><span class="checklist-number">05</span><span><strong>Use a stable mouse polling rate</strong><span>Start at 1000 Hz if supported. Close unused recording overlays and heavy background apps. Network ping is separate from local input delay.</span></span><span class="checklist-box"><svg><use href="#i-check"/></svg></span></label>
+        </div>
+        <div class="latency-bottom"><button class="button secondary" id="open-display"><svg><use href="#i-monitor"/></svg>Open display settings</button><span id="checklist-progress">0 of 5 completed · saved on this device</span></div>
+      </section>
+
+      <section class="page" id="page-recovery" aria-label="Backup and restore" hidden>
+        <div class="page-intro"><div class="eyebrow">A WAY BACK, BUILT IN</div><h1>Play with confidence.</h1><p>Your original settings are saved before the first change.</p></div>
+        <article class="recovery-card"><div class="recovery-symbol"><svg><use href="#i-shield"/></svg></div><span class="small-badge" id="backup-badge">NO ACTIVE BACKUP</span><h2 id="backup-heading">A fresh starting point.</h2><p id="backup-description">Apply a preset to create a backup of the settings it changes. No changes have been made by this app.</p><div class="recovery-actions"><button class="button secondary" id="open-backups"><svg><use href="#i-folder"/></svg>Open backup folder</button><button class="button restore-button" id="restore" disabled><svg><use href="#i-restore"/></svg>Restore backup</button></div></article>
+        <div class="recovery-details"><article><span>01</span><h3>Saved before applying</h3><p>The original Fortnite config and previous Windows values are kept locally. No account or upload is needed.</p></article><article><span>02</span><h3>Restore with care</h3><p>Close Fortnite first. If a managed value changed outside this app, restoration pauses for that item to protect your newer settings.</p></article><article><span>03</span><h3>A clear history</h3><p>Old backups stay available after restoring. Restore the active backup before applying a different preset.</p></article></div>
+      </section>
+      <footer class="action-bar"><div class="action-summary"><div class="action-icon"><svg><use href="#i-shield"/></svg></div><div><strong id="action-title">Competitive preset selected</strong><span id="action-subtitle">Backup first. Then optimize.</span></div></div><button class="button primary" id="review-apply"><svg><use href="#i-zap"/></svg>Review & apply<svg><use href="#i-arrow"/></svg></button></footer>
+    </main>
+  </div>
+  <dialog id="confirm-dialog"><div class="dialog-top"><span class="eyebrow">YOU ARE IN CONTROL</span><button class="icon-button" id="dialog-close" aria-label="Close confirmation">×</button></div><h2 id="dialog-title">Review your changes</h2><p id="dialog-description"></p><ul id="change-list"></ul><div class="dialog-note"><svg><use href="#i-shield"/></svg><span id="dialog-note-text">Original values are saved locally before any changes.</span></div><div class="dialog-actions"><button class="button secondary" id="dialog-cancel">Cancel</button><button class="button primary" id="dialog-confirm">Back up & apply</button></div></dialog>
+  <div id="toast" role="status" class="toast" hidden></div>
+</body>
+</html>

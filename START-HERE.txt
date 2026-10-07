@@ -1,0 +1,26 @@
+DROPZONE OPTIMIZER - WINDOWS x64
+For your i5-10600K / RX 6600 / 16 GB / 1080p 280 Hz setup
+
+1. Extract ALL files from the ZIP into one folder.
+2. Open "Dropzone Optimizer.exe". No Node.js install is required.
+3. Launch Fortnite once, then close it. Click Scan PC in Dropzone.
+4. Start with Competitive. Review Game settings, then Review & apply.
+5. Use the Input latency checklist for 280 Hz, Performance mode,
+   AMD Anti-Lag and optional FreeSync settings.
+6. Close Dropzone before playing. Applied settings remain in place.
+
+UNDO: Close Fortnite, open Dropzone, then Backup & restore -> Restore backup.
+Original files and Windows values are kept under:
+%APPDATA%\Dropzone Optimizer\recovery
+Use Open backup folder to access the actual folder.
+
+280 FPS is a target, not a guaranteed result. The app cannot measure
+end-to-end input latency. Try a lower stable FPS cap if frames fluctuate;
+277 FPS is available for testing with FreeSync.
+
+This is an unsigned build. Live Windows/Fortnite behavior must be tested on
+your PC; the automated engine and interface tests were run on Linux.
+No administrator access is requested. See README.md for exact changes,
+recovery details, development commands and validation limitations.
+
+Independent project. Not affiliated with Epic Games or AMD.

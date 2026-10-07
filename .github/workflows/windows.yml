@@ -1,0 +1,26 @@
+name: Validate and package Windows app
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npx playwright install chromium
+      - run: npm run test:ui
+      - run: npm run package:win
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Dropzone-Optimizer-Windows-x64
+          path: dist/*.zip
